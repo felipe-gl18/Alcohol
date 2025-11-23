@@ -4,7 +4,7 @@ import { FaBeerMugEmpty, FaHouse } from "react-icons/fa6";
 import { FiPackage } from "react-icons/fi";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -23,6 +23,11 @@ const StyledNavbar = styled.nav`
   }
 `;
 
+const navbarItemsAnimation = keyframes`
+  0% {gap: 32px; opacity: 0;}
+  100% {gap: 12px; opacity: 1;}
+`;
+
 const StyledUL = styled.ul<{ menuIsOpen: boolean }>`
   position: relative;
   z-index: 10; /* acima do backdrop */
@@ -37,6 +42,9 @@ const StyledUL = styled.ul<{ menuIsOpen: boolean }>`
     align-items: center;
     gap: 12px;
     cursor: pointer;
+    animation-name: ${navbarItemsAnimation};
+    animation-duration: 1s;
+    animation-iteration-count: once;
   }
 
   @media (max-width: 860px) {
