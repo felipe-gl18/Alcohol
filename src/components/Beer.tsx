@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { OrbitControls } from "@react-three/drei";
 
 const BeerModel = () => {
-  const model = useLoader(FBXLoader, "/src/assets/water_bottle.fbx");
+  const model = useLoader(FBXLoader, "/assets/water_bottle.fbx");
   const ref = useRef<ThreeElements["primitive"]>(null);
 
   useEffect(() => {
