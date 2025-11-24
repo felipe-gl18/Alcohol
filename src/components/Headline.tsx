@@ -72,9 +72,9 @@ export default function Headline() {
       <HeadlineText>
         <h1>
           ONE AND ONLY <br />
-          ALCOHOL
+          FRESHK
         </h1>
-        <span>Stay away from problems with Alcohol</span>
+        <span>Stay away from problems with Freshk</span>
       </HeadlineText>
       <Button>View Products</Button>
     </StyledHeadline>
