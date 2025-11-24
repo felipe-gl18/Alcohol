@@ -1,21 +1,25 @@
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import {
+  Canvas,
+  useFrame,
+  useLoader,
+  type ThreeElements,
+} from "@react-three/fiber";
+import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import * as THREE from "three";
+import { OrbitControls } from "@react-three/drei";
 
 const BeerModel = () => {
-  const model = useLoader(GLTFLoader, "/src/assets/soap.glb");
-  const ref = useRef<THREE.Object3D>(null);
+  const model = useLoader(FBXLoader, "/src/assets/water_bottle.fbx");
+  const ref = useRef<ThreeElements["primitive"]>(null);
 
   useFrame((_, delta) => {
     if (ref.current) {
-      ref.current.rotation.y += delta * 0.5;
     }
   });
 
   useEffect(() => {
-    model.scene.traverse((obj) => {
+    model.traverse((obj) => {
       if (obj.isObject3D) {
         obj.castShadow = true;
         obj.receiveShadow = true;
@@ -26,9 +30,9 @@ const BeerModel = () => {
   return (
     <primitive
       ref={ref}
-      object={model.scene}
+      object={model}
       scale={[0.4, 0.4, 0.4]}
-      position={[0, -0.4, 0]}
+      position={[0, -1.2, 2]}
     />
   );
 };
@@ -41,13 +45,12 @@ const StyledBeer = styled.div`
 export default function Beer() {
   return (
     <StyledBeer>
-      <Canvas camera={{ position: [0, 0, 2] }}>
+      <Canvas>
         <ambientLight intensity={1.2} />
-
         <directionalLight position={[3, 3, 3]} intensity={2} castShadow />
-
         <pointLight position={[-3, -1, 2]} intensity={1.5} />
         <BeerModel />
+        <OrbitControls />
       </Canvas>
     </StyledBeer>
   );
