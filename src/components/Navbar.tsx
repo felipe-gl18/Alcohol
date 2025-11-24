@@ -66,6 +66,7 @@ const StyledUL = styled.ul<{ menuIsOpen: boolean }>`
       `
         display: none;
     `};
+    margin-top: 40px;
     flex-direction: column;
     width: 100%;
   }
@@ -113,6 +114,9 @@ const HowToOrder = styled.p<{ menuIsOpen: boolean }>`
   cursor: pointer;
   position: relative;
   z-index: 20; /* acima do backdrop */
+  animation-name: ${navbarItemsAnimation};
+  animation-duration: 1s;
+  animation-iteration-count: once;
 
   @media (max-width: 860px) {
     ${({ menuIsOpen }) =>
